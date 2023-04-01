@@ -1,10 +1,10 @@
 import React, {useEffect, useState, MouseEvent} from 'react'
 import { IUser } from './RegisterPage';
-import {onSnapshot, collection, addDoc} from 'firebase/firestore';
+import {onSnapshot, collection, addDoc, getDocs} from 'firebase/firestore';
 import { Alert, Card, Grid, Divider, TextField, List, ListItem, ListItemText, Fab } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-import { auth, db } from "../firebase.config";
-import { getFirestore } from "firebase/firestore";
+import { auth } from "../firebase.config";
+import { getFirestore } from 'firebase/firestore';
 
 export interface IMessage {
   user: IUser
@@ -17,21 +17,28 @@ const ChatPage: React.FC = () => {
   const [message, setMessage] = useState<string>('');
   const [messages, setMessages] = useState<IMessage[]>([]);
   const currentUser = auth.currentUser
+  const db = getFirestore();
 
   useEffect(() => {
-    const unsub = onSnapshot(collection(db, 'messages'), doc => {
-      doc.forEach((d: any) => {
-        setMessages(prev => [...prev, d.data()])
+    // const unsub = onSnapshot(collection(db, 'messages'), doc => {
+    //   doc.forEach((d: any) => {
+    //     setMessages(prev => [...prev, d.data()])
+    //   })
+    // })
 
-      })
-    })
-
-    return () => {
-      unsub();
-    }
-
+    // return () => {
+    //   unsub();
+    // }
+    getMessages()
   }, [])
 
+  async function getMessages () {
+    const querySnapshot = await getDocs(collection(db, "messages"));
+    querySnapshot.forEach((doc) => {
+      console.log(`${doc.id} => ${doc.data()}`);
+      // setMessages(prev => [...prev, doc.data()])
+    });
+  }
 
   const addMessageHandler = async (e: MouseEvent<HTMLButtonElement>) => {
       try {
