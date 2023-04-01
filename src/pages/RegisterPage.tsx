@@ -30,7 +30,7 @@ declare global {
    }
 }
 
-interface IUser {
+export interface IUser {
   phoneNumber: string,
 }
 
@@ -54,7 +54,7 @@ const RegisterPage = () : JSX.Element => {
       window.recaptchaVerifier = new RecaptchaVerifier(
         "recaptcha-container",
         {
-          size: "invisible",
+          size: "normal",
           callback: (response:any) => {
             onSignup();
           },

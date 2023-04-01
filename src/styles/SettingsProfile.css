@@ -1,0 +1,28 @@
+.profile-container {
+    width: 100%;
+    background: #8EBEFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+}
+.profile-block {
+    width: 60%;
+    background: aliceblue;
+    border-radius: 10px;
+}
+.profile-main {
+    width: 90%;
+    margin: auto;
+    background: aliceblue !important; 
+    border: none !important;
+    box-shadow: none !important;
+    padding: 10px 0;
+}
+.profile-info {
+    display: flex;
+    flex-direction: column;
+}
+.btn-block {
+    flex-direction: column;
+}
