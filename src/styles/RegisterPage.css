@@ -1,0 +1,19 @@
+.inp-phone {
+  width: 100% !important;
+  height: 56px !important;
+  /* padding: 16.5px !important; */
+  margin: 10px auto !important;
+}
+
+.verif-container {
+  /* width: 50%; */
+  display: flex;
+  margin: 30px auto !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.opt-container {
+  margin: 15px auto;
+}

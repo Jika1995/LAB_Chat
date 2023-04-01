@@ -13,6 +13,9 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
+import { signOut } from 'firebase/auth';
+import { auth } from '../../firebase.config';
+
 import { useNavigate } from 'react-router-dom';
 
 const pages = [
@@ -40,6 +43,14 @@ const settings = [
     path: '/logout'
   },
 ]
+
+function logout () {
+  signOut(auth).then(() => {
+    console.log('success logout');
+  }).catch((error) => {
+    console.log(error);
+  });
+}
   
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -185,6 +196,7 @@ function Navbar() {
               ))}
             </Menu>
           </Box>
+          <Button onClick={() => logout()} style={{color: 'black'}}>Logout test</Button>
         </Toolbar>
       </Container>
     </AppBar>
