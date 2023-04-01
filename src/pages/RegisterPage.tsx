@@ -15,20 +15,18 @@ declare global {
    }
 }
 
-interface IUser {
-  phoneNumber: string
-}
+// interface IUser {
+//   phoneNumber: string
+// }
 
 const RegisterPage = () : JSX.Element => {
   const [otp, setOtp] : any = useState("");
   const [ph, setPh] : any = useState("");
   const [loading, setLoading] = useState<boolean>(false);
   const [showOTP, setShowOTP] = useState<boolean>(false);
-  const [user, setUser] = useState<IUser>({
-    phoneNumber:''
-  } as IUser);
+  const [user, setUser] = useState(null);
 
-  function onCaptchVerify() {
+  const onCaptchVerify = () => {
     if (!window.recaptchaVerifier) {
       window.recaptchaVerifier = new RecaptchaVerifier(
         "recaptcha-container",
